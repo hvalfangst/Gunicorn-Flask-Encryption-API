@@ -7,4 +7,4 @@ kubectl delete -f k8s/nginx.yaml > /dev/null 2>&1
 kubectl delete -f k8s/manifest.yaml > /dev/null 2>&1
 
 echo "Deleting resources defined in manifest.yaml"
-./misc/progress_bar.sh 0.333
+./misc/progress_bar.sh 0.250

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: encryption-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: hvalfangst
@@ -27,6 +27,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+        - name: redis-master
+          image: redis
+          ports:
+            - containerPort: 6379
 ---
 apiVersion: apps/v1
 kind: Deployment

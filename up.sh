@@ -22,13 +22,14 @@ echo -e "\n\n"
 # Base64 encode the encryption key
 encoded_key=$(echo -n "$encryption_key" | base64 | tr -d '\n')
 
-# Set field encryption-key in secrets.yaml to point to the recently encoded key
+# Use 'sed' to overwrite value of the field "encryption_key" contained in yaml file "secrets"
 sed -i "s|^\(.*encryption_key: \)\(.*\)|\1$encoded_key|" k8s/secrets.yaml
 
-# Create our secret, nginx configmap, deployment and service resources
+# Create our initial resources
 kubectl apply -f k8s/secrets.yaml > /dev/null 2>&1
 kubectl apply -f k8s/nginx.yaml > /dev/null 2>&1
 kubectl apply -f k8s/manifest.yaml > /dev/null 2>&1
+
 
 echo "Creating resources defined in manifest.yaml"
 
